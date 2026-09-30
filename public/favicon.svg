@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <rect width="64" height="64" rx="14" fill="#0B0F13"/>
+  <rect x="2" y="2" width="60" height="60" rx="12" stroke="#D9531E" stroke-width="2"/>
+  <!-- HardHat Insignia in Primary Industrial Orange & Architectural Gold -->
+  <path d="M14 38c0-9.941 8.059-18 18-18s18 8.059 18 18" stroke="#D9531E" stroke-width="4" stroke-linecap="round" fill="none"/>
+  <path d="M10 40c0-1.105.895-2 2-2h40c1.105 0 2 .895 2 2v2c0 1.105-.895 2-2 2H12c-1.105 0-2-.895-2-2v-2z" fill="#D9531E"/>
+  <path d="M32 20v-6" stroke="#D9531E" stroke-width="4" stroke-linecap="round"/>
+  <path d="M26 23v-5" stroke="#D9531E" stroke-width="3" stroke-linecap="round"/>
+  <path d="M38 23v-5" stroke="#D9531E" stroke-width="3" stroke-linecap="round"/>
+  <!-- Structural Baseline -->
+  <rect x="18" y="47" width="28" height="4" rx="2" fill="#F59E0B"/>
+</svg>
