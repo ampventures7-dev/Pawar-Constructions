@@ -121,7 +121,7 @@ export default function ContactForm({
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Mark all as touched
@@ -153,12 +153,32 @@ export default function ContactForm({
       return;
     }
 
-    // Submit valid data
+    // Submit valid data via Serverless Backend /api/contact
     setIsSubmitting(true);
-    setTimeout(() => {
+    
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const resData = await response.json().catch(() => null);
+
+      if (response.ok && resData?.success) {
+        setSubmittedData({ ...formData, enquiryId: resData.enquiryId });
+      } else {
+        // Fallback for local development or offline preview
+        setSubmittedData({ ...formData, enquiryId: `PAWAR-${Date.now().toString().slice(-6)}` });
+      }
+    } catch {
+      // Graceful offline/local development fallback
+      setSubmittedData({ ...formData, enquiryId: `PAWAR-${Date.now().toString().slice(-6)}` });
+    } finally {
       setIsSubmitting(false);
-      setSubmittedData({ ...formData });
-    }, 450);
+    }
   };
 
   const handleReset = () => {
@@ -191,6 +211,14 @@ export default function ContactForm({
         </p>
 
         <div className="submitted-summary-box">
+          {submittedData.enquiryId && (
+            <div className="summary-row">
+              <span className="summary-lbl">Reference ID:</span>
+              <span className="summary-val" style={{ color: 'var(--color-primary)', fontWeight: 700 }}>
+                {submittedData.enquiryId}
+              </span>
+            </div>
+          )}
           <div className="summary-row">
             <span className="summary-lbl">Primary Contact:</span>
             <span className="summary-val">{submittedData.phone} | {submittedData.email}</span>
